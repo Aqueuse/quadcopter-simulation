@@ -48,7 +48,7 @@ class stabilizer
 		void setInitHeightLock(double heightInitlock);
 		void resetIntegrals();
 		void setFlightMode(stable_flight_mode flight_mode_arg);
-		void stabilizer::compute_pwmDutyCycle( 	Vector4d *pwmDutyCycle,
+		void compute_pwmDutyCycle( 	Vector4d *pwmDutyCycle,
 												Vector3d RPY_is,
 												Vector3d RPYDot_is,
 												double height_is,

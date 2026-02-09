@@ -111,7 +111,7 @@ class irr_renderer
 		
 		// functions
 		void render();
-		bool get_rendererRunning();
+		bool get_rendererRunning() const;
 		
 	private:
 	
@@ -130,7 +130,7 @@ class irr_renderer
 		coordinate_axes *axes_node;
 		
 		// function 
-		void display_information(void);
+		void display_information(void) const;
 };
 
 #endif

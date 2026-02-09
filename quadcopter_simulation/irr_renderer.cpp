@@ -22,7 +22,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 irr_renderer::irr_renderer(int frame_mode, int X_windows_size, int Y_windows_size, int fps)
 {
 	// init irrlicht engine
-	this->device = createDevice(video::EDT_OPENGL, core::dimension2d<u32>(X_windows_size, Y_windows_size), 16, false, false, false, &receiver);
+	this->device = createDevice(
+		video::EDT_OPENGL,
+		core::dimension2d<u32>(X_windows_size, Y_windows_size),
+		16,
+		false,
+		false,
+		false,
+		&receiver);
 	this->driver = device->getVideoDriver();
 	this->smgr = device->getSceneManager();
 	
@@ -68,7 +75,7 @@ irr_renderer::irr_renderer(int frame_mode, int X_windows_size, int Y_windows_siz
 };
 
 // =================================================================
-irr_renderer::~irr_renderer(void)
+irr_renderer::~irr_renderer()
 {
 	if(this->device_dropped == false)
 		this->device->drop();
@@ -77,13 +84,13 @@ irr_renderer::~irr_renderer(void)
 	delete this->Quadcopter_3D;
 	
 	this->device_dropped = true;
-	this->device = NULL;
-	this->axes_node = NULL;
-	this->Quadcopter_3D = NULL;
+	this->device = nullptr;
+	this->axes_node = nullptr;
+	this->Quadcopter_3D = nullptr;
 };
 
 // =================================================================
-void irr_renderer::render(void)
+void irr_renderer::render()
 {
 	if(this->device_dropped == true)
 		return;
@@ -127,14 +134,12 @@ void irr_renderer::render(void)
 	}
 };
 
-bool irr_renderer::get_rendererRunning()
-{
+bool irr_renderer::get_rendererRunning() const {
 	return !(this->device_dropped);
 }
 
 // =================================================================
-void irr_renderer::display_information(void)
-{
+void irr_renderer::display_information(void) const {
 	core::stringw roll = L"Roll: ";
 	roll += this->Quadcopter_3D->get_attitude(0);
 	roll += "deg";
@@ -179,4 +184,4 @@ void irr_renderer::display_information(void)
 	mot4 += this->Quadcopter_3D->get_motorspeed(3);
 	mot4 += "rpm";
 	this->font->draw(mot4.c_str(), core::rect<s32>(10,108 + 20,300,60), video::SColor(255,50 % 255,50 % 255,255));
-};
+}
